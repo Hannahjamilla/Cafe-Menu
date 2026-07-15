@@ -76,7 +76,7 @@ export default function FloorPlanMap({ activeZone, onSelectZone }) {
       {/* ─── Header ─── */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
         <div className="space-y-1">
-          <span className="text-[10px] uppercase tracking-[0.25em] text-[#a26a42] font-black">Cozy Corners · Julius Café</span>
+          <span className="text-[10px] uppercase tracking-[0.25em] text-[#a26a42] font-black">Cozy Corners · Brows&amp;Beyond</span>
           <h2 className="text-2xl sm:text-3xl font-serif font-black text-stone-900 leading-tight">
             Find Your Spot
           </h2>

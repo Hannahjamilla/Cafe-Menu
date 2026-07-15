@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { X, Coffee, Info, AlertCircle, Sparkles } from 'lucide-react';
 
+/* Bottom-sheet slide-up animation for mobile */
+const slideUpStyle = `
+@keyframes slideUpModal {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+`;
+
 export default function DetailModal({ item, onClose }) {
   if (!item) return null;
 
@@ -23,7 +31,7 @@ export default function DetailModal({ item, onClose }) {
   }, [item]);
 
   const finalPrice = React.useMemo(() => {
-    let basePrice = item.price * 55; // Sized relative scale for PHP
+    let basePrice = item.price;
     if (selectedSize?.includes('Large')) basePrice += 40;
     
     const getOptionPremium = (optionStr) => {
@@ -49,17 +57,33 @@ export default function DetailModal({ item, onClose }) {
   const btnOff = 'bg-white text-stone-600 border-stone-200 hover:border-amber-300 hover:text-amber-700';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/40 backdrop-blur-sm">
-      <div className="bg-[#fdf8f0] rounded-3xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl border border-stone-200 relative flex flex-col md:flex-row">
+    <>
+      {/* Inject keyframe animation */}
+      <style>{slideUpStyle}</style>
+      
+      {/* Overlay: items-end on mobile (bottom sheet), items-center on md+ (centered modal) */}
+      <div 
+        className="fixed inset-0 z-50 flex items-end md:items-center justify-center md:p-4 bg-stone-900/40 backdrop-blur-sm"
+        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      >
+        <div 
+          className="bg-[#fdf8f0] rounded-t-3xl md:rounded-3xl w-full md:max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl border border-stone-200 relative flex flex-col md:flex-row"
+          style={{ animation: 'slideUpModal 0.35s cubic-bezier(0.32, 0.72, 0, 1)' }}
+        >
 
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 bg-white rounded-full p-2 text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors shadow border border-stone-100"
+          className="absolute top-3 right-3 md:top-4 md:right-4 z-10 bg-white rounded-full p-2 text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors shadow border border-stone-100"
           aria-label="Close"
         >
           <X className="w-4 h-4" />
         </button>
+        
+        {/* Drag handle indicator (mobile only) */}
+        <div className="md:hidden flex justify-center pt-3 pb-1">
+          <div className="w-10 h-1 rounded-full bg-stone-300" />
+        </div>
 
         {/* ── LEFT: Image + info ── */}
         <div className="w-full md:w-[45%] p-6 md:p-8 flex flex-col gap-5 border-b md:border-b-0 md:border-r border-stone-100 bg-white rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none">
@@ -238,5 +262,6 @@ export default function DetailModal({ item, onClose }) {
 
       </div>
     </div>
+    </>
   );
 }

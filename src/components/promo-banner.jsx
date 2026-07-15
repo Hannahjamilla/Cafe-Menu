@@ -6,20 +6,34 @@ export default function PromoBanner() {
     {
       idx: '01',
       tag: 'Student Access',
-      title: 'Back to School',
-      desc: 'Present a valid student ID to our barista for 15% off espresso drinks and fresh meals on campus.'
+      title: 'Back to School Special',
+      desc: 'Present your student ID for 15% off all espresso drinks and fresh meals. Plus get free WiFi upgrades in our study zones.',
+      gradient: 'from-blue-500/10 to-purple-500/10',
+      accent: 'text-blue-600'
     },
     {
       idx: '02',
       tag: 'Work Session',
-      title: 'Bottomless Brew',
-      desc: 'Order our hot drip coffee, get unlimited warm cup refills at no extra cost while you focus.'
+      title: 'Bottomless Brew Deal',
+      desc: 'Order our signature drip coffee and enjoy unlimited warm refills at no extra cost while you focus on your projects.',
+      gradient: 'from-amber-500/10 to-orange-500/10',
+      accent: 'text-amber-600'
     },
     {
       idx: '03',
-      tag: 'Daily Ritual',
-      title: 'Pastry Hour',
-      desc: 'Pop in between 2 PM and 5 PM. Pair any artisan baked good with a warm brew for a discount.'
+      tag: 'Happy Hour',
+      title: 'Pastry Power Hour',
+      desc: 'Visit between 2-5 PM daily. Pair any artisan baked good with your choice of warm brew for an exclusive discount.',
+      gradient: 'from-rose-500/10 to-pink-500/10',
+      accent: 'text-rose-600'
+    },
+    {
+      idx: '04',
+      tag: 'Weekend Special',
+      title: 'Workspace Package',
+      desc: 'Book a private study room for 4+ hours on weekends and get complimentary specialty drinks and premium snacks.',
+      gradient: 'from-emerald-500/10 to-teal-500/10',
+      accent: 'text-emerald-600'
     }
   ];
 
@@ -39,30 +53,30 @@ export default function PromoBanner() {
   }, [promos.length]);
 
   return (
-    <div className="w-full h-full min-h-[260px] flex flex-col justify-between p-7 rounded-[30px] border border-stone-200 bg-white relative overflow-hidden group cursor-pointer shadow-sm hover:border-amber-200 transition-colors duration-500">
+    <div className={`w-full h-full min-h-[320px] flex flex-col justify-between p-8 rounded-[30px] border border-stone-200 bg-gradient-to-br ${promos[activeIndex].gradient} relative overflow-hidden group cursor-pointer shadow-lg hover:shadow-xl hover:border-amber-200 transition-all duration-500`}>
       
       {/* ─── MASSIVE BACKGROUND TYPOGRAPHY (NO IMAGES) ─── */}
       <div 
-        className={`absolute -right-2 -bottom-6 text-[140px] md:text-[180px] font-serif font-black text-stone-100/60 leading-none select-none pointer-events-none transition-opacity duration-500 ${inTransition ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute -right-2 -bottom-8 text-[160px] md:text-[200px] font-serif font-black text-stone-100/60 leading-none select-none pointer-events-none transition-opacity duration-500 ${inTransition ? 'opacity-0' : 'opacity-100'}`}
       >
         {promos[activeIndex].idx}
       </div>
 
       {/* ─── TOP EDITORIAL HEADER ─── */}
-      <div className="flex items-center justify-between z-10 select-none">
-        <div className="flex items-center gap-4">
-          <div className="h-[1px] w-8 bg-stone-800" />
-          <span className="text-[10px] tracking-[0.25em] font-bold uppercase text-stone-800">
+      <div className="flex items-center justify-between z-10 select-none mb-4">
+        <div className="flex items-center gap-5">
+          <div className="h-[1px] w-10 bg-stone-800" />
+          <span className="text-[11px] tracking-[0.25em] font-bold uppercase text-stone-800">
             Bulletin
           </span>
         </div>
         
         {/* Sleek Pagination Dots */}
-        <div className="flex gap-2">
+        <div className="flex gap-3">
           {promos.map((_, idx) => (
             <div 
               key={idx} 
-              className={`h-1.5 rounded-full transition-all duration-700 ease-out ${activeIndex === idx ? 'w-6 bg-stone-800' : 'w-1.5 bg-stone-200'}`}
+              className={`h-2 rounded-full transition-all duration-700 ease-out ${activeIndex === idx ? 'w-8 bg-stone-800' : 'w-2 bg-stone-200'}`}
             />
           ))}
         </div>
@@ -71,24 +85,27 @@ export default function PromoBanner() {
       {/* ─── MAIN COPY AND DETAILS ─── */}
       <div className={`mt-auto z-10 transition-all duration-500 transform ${inTransition ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
         
-        <span className="inline-block text-[10px] font-extrabold uppercase tracking-[0.15em] text-amber-700 mb-2 border-b border-amber-200 pb-1">
+        <span className={`inline-block text-[10px] font-extrabold uppercase tracking-[0.15em] ${promos[activeIndex].accent} mb-2 border-b ${promos[activeIndex].accent.replace('text-', 'border-')} pb-1`}>
           {promos[activeIndex].tag}
         </span>
         
-        <h3 className="text-3xl sm:text-4xl font-serif font-black tracking-tight text-stone-900 leading-none mb-3">
+        <h3 className="text-4xl sm:text-5xl font-serif font-black tracking-tight text-stone-900 leading-none mb-4">
           {promos[activeIndex].title}
         </h3>
         
-        <p className="text-xs font-medium leading-relaxed text-stone-500 max-w-[85%] sm:max-w-xs">
+        <p className="text-sm font-medium leading-relaxed text-stone-500 max-w-[90%] sm:max-w-sm mb-6">
           {promos[activeIndex].desc}
         </p>
 
         {/* ─── ACTION FOOTER ─── */}
-        <div className="flex items-center justify-between mt-6 pt-5 border-t border-stone-100/80">
-          <span className="text-[9px] font-bold uppercase tracking-widest text-stone-400">
-            Valid at counter
-          </span>
-          <div className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center group-hover:bg-amber-600 group-hover:border-amber-600 group-hover:text-white text-stone-400 transition-colors">
+        <div className="flex items-center justify-between mt-8 pt-6 border-t border-stone-100/80">
+          <div className="flex items-center space-x-2">
+            <span className="text-[9px] font-bold uppercase tracking-widest text-stone-400">
+              Valid at counter
+            </span>
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          </div>
+          <div className={`w-9 h-9 rounded-full border border-stone-200 flex items-center justify-center ${promos[activeIndex].accent.replace('text-', 'group-hover:bg-')} group-hover:border-transparent group-hover:text-white text-stone-400 transition-all duration-300 shadow-sm`}>
             <ArrowUpRight className="w-4 h-4" />
           </div>
         </div>
