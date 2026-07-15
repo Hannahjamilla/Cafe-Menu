@@ -67,7 +67,7 @@ export default function DetailModal({ item, onClose }) {
         onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
       >
         <div 
-          className="bg-[#fdf8f0] rounded-t-3xl md:rounded-3xl w-full md:max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl border border-stone-200 relative flex flex-col md:flex-row"
+          className="bg-[#fdf8f0] rounded-t-3xl md:rounded-3xl w-full md:max-w-4xl max-h-[60vh] md:max-h-[92vh] overflow-y-auto shadow-2xl border border-stone-200 relative flex flex-col md:flex-row"
           style={{ animation: 'slideUpModal 0.35s cubic-bezier(0.32, 0.72, 0, 1)' }}
         >
 
