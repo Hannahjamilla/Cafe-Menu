@@ -380,44 +380,44 @@ export const menuItems = [
 
 export const cafeFeatures = [
   {
-    id: 'relaxing-atmosphere',
-    title: 'Relaxing Vibes',
-    description: 'Take a break from work. Our space is decorated with fresh green plants, quiet low music, and comfortable lighting to help you rest.',
+    id: 'eco-atmosphere',
+    title: 'Green Atmosphere',
+    description: 'Breathe easy in our space filled with air-purifying plants, using 100% renewable energy and carbon-neutral heating to help you rest and focus guilt-free.',
     icon: 'Compass',
     image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'student-friendly',
     title: 'Student Discounts',
-    description: 'We love students! Show your school ID card to get 15% discount off any food or drink item. We also have large study desks with plug points.',
+    description: 'We love students! Show your school ID card to get 15% discount off any food or drink item. Bring your own reusable cup for an extra 10% off.',
     icon: 'GraduationCap',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600'
   },
   {
-    id: 'budget-friendly',
-    title: 'Fair Pricing',
-    description: 'Great coffee shouldn’t be expensive. We keep our prices low and offer free coffee refills on basic filters when studying.',
-    icon: 'Wallet',
+    id: 'sustainable-sourcing',
+    title: 'Sustainable Sourcing',
+    description: 'Every bean and leaf we serve is fair-trade and organically farmed. We partner strictly with ethical local farms to cut down on transportation emissions.',
+    icon: 'Leaf',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'study-space',
-    title: 'Individual Study Areas',
-    description: 'Select from deep-focus single desks with privacy divider partitions, or sit at shared desks to read with friends.',
+    title: 'Reclaimed Study Areas',
+    description: 'Select from deep-focus single desks or shared tables—all crafted from 100% locally reclaimed and upcycled wood by community artisans.',
     icon: 'BookOpen',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'business-space',
-    title: 'Work & Meeting Rooms',
-    description: 'Private rooms with solid whiteboard dividers, fast internet connections, and large projection screens for study or video calls.',
+    title: 'Eco Meeting Rooms',
+    description: 'Private rooms powered by solar energy, featuring digital whiteboard dividers instead of paper, and energy-efficient projection screens.',
     icon: 'Users',
     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=600'
   },
   {
     id: 'recreation-space',
-    title: 'Games & Rest Corner',
-    description: 'Need a rest break? We have a cozy board game library corner with pillow seats, card decks, and comic books for absolute fun.',
+    title: 'Compost & Seed Corner',
+    description: 'Need a break? Grab a complimentary packet of native seeds for your garden from our zero-waste corner, or drop off your organic compost.',
     icon: 'Sparkles',
     image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=600'
   }
@@ -430,9 +430,9 @@ export const additionalServices = [
     icon: 'Wifi'
   },
   {
-    title: 'Wireless Phone Chargers',
-    description: 'Built-in wireless charging circles on every oak study table for easy phone power.',
-    icon: 'BatteryCharging'
+    title: 'Zero-Waste Takeaway',
+    description: 'All our cups, lids, and packaging are 100% biodegradable and home-compostable.',
+    icon: 'Leaf'
   },
   {
     title: 'Lendable Tech Gear',
@@ -440,18 +440,18 @@ export const additionalServices = [
     icon: 'Headphones'
   },
   {
-    title: 'Free Coffee Refills',
-    description: 'Order one drip brew mug and get unlimited hot top-ups while you study.',
-    icon: 'RefreshCw'
+    title: 'BYO Cup Discount',
+    description: 'Get an extra 10% off any beverage when you bring your own reusable mug or tumbler.',
+    icon: 'Coffee'
   },
   {
-    title: 'Free Fresh Drinking Water',
-    description: 'Self-serve fresh cold drinking water dispensers are available in every corner.',
+    title: 'Filtered Tap Water',
+    description: 'Ditch the plastic bottles. Enjoy free, triple-filtered cold drinking water from our dispensers.',
     icon: 'Droplet'
   },
   {
-    title: 'Keypad Lockers',
-    description: 'Keep your bags safe inside our digital lockers when stepping out to walk.',
-    icon: 'Lock'
+    title: 'Digital Receipts Only',
+    description: 'We are completely paperless! Invoices and receipts are instantly sent to your email to save trees.',
+    icon: 'Mail'
   }
 ];

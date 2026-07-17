@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Coffee, GraduationCap, Map, BookOpen } from 'lucide-react';
+import { Coffee, GraduationCap, Map, BookOpen, Notebook } from 'lucide-react';
 
-export default function NavigationBar({ currentView, onViewChange, currentZone }) {
+export default function NavigationBar({ 
+  currentView, 
+  onViewChange, 
+  currentZone, 
+  onTrayOpenClick, 
+  trayCount,
+  trayBouncing
+}) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -78,10 +85,29 @@ export default function NavigationBar({ currentView, onViewChange, currentZone }
         )}
 
         {/* Student tag with friendly word & inviting light green palette */}
-        <div className="flex items-center gap-2 bg-[#f0f9f3] border border-[#cbe8d2] px-2 sm:px-4 py-2 sm:py-2.5 rounded-full text-[10px] text-[#2d6a4f] font-black uppercase tracking-wider select-none hover:bg-[#e4f5ea] transition-all cursor-help shrink-0" title="Student Discount Activated">
+        <div className="hidden sm:flex items-center gap-2 bg-[#f0f9f3] border border-[#cbe8d2] px-2 sm:px-4 py-2 sm:py-2.5 rounded-full text-[10px] text-[#2d6a4f] font-black uppercase tracking-wider select-none hover:bg-[#e4f5ea] transition-all cursor-help shrink-0" title="Student Discount Activated">
           <GraduationCap className="w-4 h-4 text-[#2d6a4f] shrink-0" />
           <span className="hidden lg:inline whitespace-nowrap">Classmates Perks Active</span>
         </div>
+
+        {/* Tray Button - Only show in the Sip & Eat (menu) tab */}
+        {currentView === 'menu' && (
+          <button
+            onClick={onTrayOpenClick}
+            className={`relative flex items-center justify-center p-2.5 sm:px-4 sm:py-2.5 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white rounded-full font-bold text-xs shadow-md border border-amber-600 gap-1.5 cursor-pointer shrink-0 transition-all duration-300 ${
+              trayBouncing ? 'scale-125 shadow-amber-400/50 shadow-lg' : 'scale-100'
+            }`}
+            aria-label="Open Order Tray"
+          >
+            <Notebook className="w-3.5 h-3.5 shrink-0" />
+            <span className="hidden md:inline whitespace-nowrap">My Tray</span>
+            {trayCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-rose-600 text-white font-extrabold text-[9px] rounded-full w-5 h-5 flex items-center justify-center border-2 border-[#fdfaf5] shadow animate-pulse">
+                {trayCount}
+              </span>
+            )}
+          </button>
+        )}
       </div>
 
     </header>

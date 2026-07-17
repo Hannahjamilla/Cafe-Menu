@@ -9,7 +9,7 @@ const slideUpStyle = `
 }
 `;
 
-export default function DetailModal({ item, onClose }) {
+export default function DetailModal({ item, onClose, onAddToTray }) {
   if (!item) return null;
 
   const [selectedSize, setSelectedSize] = useState('');
@@ -50,6 +50,19 @@ export default function DetailModal({ item, onClose }) {
     document.body.style.overflow = 'hidden';
     return () => { document.body.style.overflow = ''; };
   }, []);
+
+  const handleAdd = () => {
+    if (onAddToTray) {
+      onAddToTray({
+        size: selectedSize,
+        milk: selectedMilk,
+        sweetness: selectedSweetness,
+        service: selectedService,
+        protein: selectedProtein,
+        toppings: selectedToppings
+      }, finalPrice);
+    }
+  };
 
   /* Shared button style helpers */
   const btnBase = 'text-xs font-bold rounded-xl border-2 py-2 px-3 transition-all duration-150';
@@ -242,21 +255,33 @@ export default function DetailModal({ item, onClose }) {
             <div className="flex gap-2.5 items-start bg-amber-50 border border-amber-100 rounded-2xl p-3.5">
               <AlertCircle className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
               <p className="text-[10px] text-stone-500 leading-relaxed font-semibold">
-                <span className="font-extrabold text-amber-700 block mb-0.5">Display only!</span>
-                This is an interactive menu card. Please order at the front counter.
+                <span className="font-extrabold text-amber-700 block mb-0.5">Counter Checklist</span>
+                Add items to your personal tray, then review and show it to the barista at the front counter.
               </p>
             </div>
           </div>
 
           {/* Price row */}
-          <div className="border-t border-stone-100 pt-5 flex items-center justify-between">
+          <div className="border-t border-stone-100 pt-5 flex items-center justify-between gap-4">
             <div>
               <span className="text-[10px] uppercase tracking-widest font-bold text-stone-400 block">Estimated Price</span>
               <span className="text-3xl font-serif font-black text-amber-600">₱{finalPrice.toFixed(0)}</span>
             </div>
-            <button onClick={onClose} className="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors shadow-md">
-              Got it!
-            </button>
+            <div className="flex gap-2">
+              <button 
+                onClick={onClose} 
+                className="bg-stone-100 hover:bg-stone-200 text-stone-600 px-4 py-3 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors border border-stone-200"
+              >
+                Close
+              </button>
+              <button 
+                onClick={handleAdd} 
+                className="bg-amber-500 hover:bg-amber-600 text-white px-5 py-3 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors shadow-md flex items-center gap-1.5"
+              >
+                <span>Add to My Tray</span>
+                <Coffee className="w-3.5 h-3.5 fill-current" />
+              </button>
+            </div>
           </div>
         </div>
 

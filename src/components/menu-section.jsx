@@ -48,79 +48,86 @@ export default function MenuSection({ onItemClick }) {
   }, []);
 
   return (
-    <section id="menu" className="py-32 bg-[#faf8f5] scroll-mt-16">
+    <section id="menu" className="py-16 sm:py-24 bg-gradient-to-b from-[#faf8f5] via-[#f5f7f2] to-[#faf8f5] scroll-mt-16">
       <div className="max-w-8xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Section Heading */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
-          <span className="text-xs font-bold tracking-widest text-[#815e3a] uppercase font-sans">
-            Crafted Daily • Fresh Local Ingredients
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <span className="text-xs font-bold tracking-widest text-emerald-850 uppercase font-sans">
+            Crafted Daily • Fresh Organic & Low-Impact Ingredients
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#2a180b] font-bold mt-3 leading-tight">
-            Our Artisan Menu Collection
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#1e3422] font-black mt-3 leading-tight">
+            Our Sustainable Menu Selection
           </h2>
-          <p className="text-[#624326] mt-5 font-semibold text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
-            Every coffee shot is weighed and extracted to perfection. All dishes feature seasonal local ingredients sourced from trusted farms. Our pastries are baked fresh every morning using premium ingredients.
+          <p className="text-[#3f4a3e] mt-4 font-semibold text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+            Every cup is brewed using compostable filters, standard solar power, and organic fair-trade beans. Our pastries and mains highlight trusted ingredients sourced from local eco-farms.
           </p>
-          <div className="flex items-center justify-center space-x-2 mt-5">
-            <div className="w-12 h-[3px] bg-[#bca47a] rounded-full" />
-            <div className="w-3 h-3 rounded-full bg-[#815e3a]" />
-            <div className="w-12 h-[3px] bg-[#bca47a] rounded-full" />
+          
+          {/* Eco Bulletin Banner */}
+          <div className="mt-6 inline-flex items-center gap-2.5 px-4.5 py-2.5 bg-emerald-50/70 border border-emerald-100/70 rounded-2xl text-[11px] font-black text-emerald-800 shadow-sm leading-none">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Every drink plants a tree. <strong>Benguet reforestation program</strong> active. 🌲</span>
+          </div>
+
+          <div className="flex items-center justify-center space-x-2 mt-6">
+            <div className="w-12 h-[3px] bg-emerald-800/10 rounded-full" />
+            <div className="w-3 h-3 rounded-full bg-[#1e3422]/20" />
+            <div className="w-12 h-[3px] bg-emerald-800/10 rounded-full" />
           </div>
         </div>
 
-        {/* --- Spotlight: Best Sellers (Horizontal scroll / quick view) --- */}
-        <div className="mb-24">
-          <div className="flex items-center justify-between mb-8">
+        {/* --- Spotlight: Guest Favorites (Horizontal scroll / quick view) --- */}
+        <div className="mb-20">
+          <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-3">
-              <Sparkles className="w-6 h-6 text-[#815e3a] animate-pulse" />
-              <h3 className="text-2xl sm:text-3xl font-serif text-[#2a180b] font-bold">
+              <Sparkles className="w-5 h-5 text-emerald-600 animate-pulse" />
+              <h3 className="text-xl sm:text-2xl font-serif text-emerald-950 font-black">
                 Guest Favorites
               </h3>
-              <span className="text-xs bg-gradient-to-r from-[#815e3a] to-[#bca47a] text-white font-bold px-3 py-1 rounded-full font-sans uppercase tracking-wider">
-                Most Ordered
+              <span className="text-[10px] bg-emerald-950 text-emerald-400 font-extrabold px-3 py-1 rounded-full uppercase tracking-wider border border-emerald-800/25">
+                Most Choice
               </span>
             </div>
-            <div className="hidden md:flex items-center text-xs text-[#9a764d] font-medium">
-              <span>Scroll for more →</span>
+            <div className="hidden md:flex items-center text-xs text-stone-500 font-semibold">
+              <span>Swipe or scroll for favorites ➔</span>
             </div>
           </div>
           
-          <div className="flex space-x-8 overflow-x-auto pb-8 scroll-smooth no-scrollbar snap-x">
-            {bestSellers.map((item) => (
+          <div className="flex space-x-6 overflow-x-auto pb-6 scroll-smooth no-scrollbar snap-x">
+            {bestSellers.map((item, idx) => (
               <div
                 key={`best-${item.id}`}
                 onClick={() => onItemClick(item)}
-                className="flex-shrink-0 w-[420px] bg-white rounded-3xl border border-[#eadecf] hover:border-[#bca47a] p-6 flex space-x-6 cursor-pointer hover:shadow-2xl transition-all duration-300 snap-start transform hover:-translate-y-2 group"
+                className="flex-shrink-0 w-[380px] bg-white rounded-[24px] border border-[#eadecf]/80 hover:border-emerald-750/30 p-5 flex space-x-5 cursor-pointer hover:shadow-xl transition-all duration-300 snap-start transform hover:-translate-y-1.5 group"
               >
                 <div className="relative">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-28 h-28 object-cover rounded-2xl border border-[#eadecf] flex-shrink-0 group-hover:scale-105 transition-transform duration-300"
+                    className="w-24 h-24 object-cover rounded-2xl border border-emerald-800/10 flex-shrink-0 group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute -top-2 -right-2 bg-[#815e3a] text-white text-xs font-bold px-2 py-1 rounded-full">
-                    #1
+                  <div className="absolute -top-2 -right-2 bg-emerald-950 text-emerald-450 border border-emerald-800/20 text-[10px] font-black w-6 h-6 rounded-full flex items-center justify-center">
+                    ★
                   </div>
                 </div>
                 <div className="flex flex-col justify-between overflow-hidden flex-1">
                   <div>
-                    <h4 className="font-extrabold text-[#2a180b] text-lg font-serif leading-tight mb-2">
+                    <h4 className="font-bold text-stone-900 text-base leading-tight mb-1 group-hover:text-emerald-800 transition-colors">
                       {item.name}
                     </h4>
-                    <p className="text-sm text-[#624326] line-clamp-2 font-medium leading-relaxed">
+                    <p className="text-xs text-stone-500 line-clamp-2 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
-                  <div className="flex justify-between items-end mt-4">
+                  <div className="flex justify-between items-end mt-3">
                     <div>
-                      <span className="text-2xl text-[#815e3a] font-bold">
+                      <span className="text-xl text-emerald-850 font-extrabold">
                         ₱{item.price}
                       </span>
-                      <span className="text-xs text-[#9a764d] block">per serving</span>
+                      <span className="text-[10px] text-stone-400 block tracking-wide select-none">per serving</span>
                     </div>
-                    <button className="text-xs bg-[#543722] hover:bg-[#2a180b] text-white px-3 py-2 rounded-lg font-bold transition-colors">
-                      View Details
+                    <button className="text-[10px] uppercase tracking-wider bg-emerald-950 hover:bg-emerald-900 text-emerald-350 px-3 py-2 rounded-xl font-black transition-colors cursor-pointer border border-emerald-800/30">
+                      Options
                     </button>
                   </div>
                 </div>
@@ -130,24 +137,24 @@ export default function MenuSection({ onItemClick }) {
         </div>
 
         {/* --- INTERACTIVE CONTROLS BAR --- */}
-        <div className="bg-white/80 backdrop-blur-sm border border-[#eadecf] rounded-3xl p-8 sm:p-10 mb-16 shadow-lg flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-8 lg:space-y-0 lg:space-x-10">
+        <div className="bg-white/90 backdrop-blur-md border border-[#dde3d5] rounded-3xl p-6 sm:p-8 mb-12 shadow-sm flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0 lg:space-x-10">
           
           {/* Real-time search */}
           <div className="relative flex-1 max-w-md">
-            <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#bca47a]">
-              <Search className="w-5 h-5" />
+            <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-emerald-700">
+              <Search className="w-4 h-4 text-emerald-700/80" />
             </span>
             <input
               type="text"
-              placeholder="Search menu items, ingredients, or dietary preferences..."
+              placeholder="Search menu items, ingredients..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border-2 border-[#eadecf] pl-12 pr-4 py-3.5 rounded-2xl text-sm font-semibold text-[#2a180b] placeholder-[#bca47a] focus:outline-none focus:ring-2 focus:ring-[#815e3a] focus:border-[#815e3a] transition-all shadow-sm"
+              className="w-full bg-white border border-[#dde3d5] pl-10 pr-4 py-3 rounded-2xl text-xs font-semibold text-[#0f2a17] placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 focus:border-emerald-700/50 transition-all shadow-inner"
             />
             {searchQuery && (
               <button 
                 onClick={() => setSearchQuery('')}
-                className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#9a764d] hover:text-[#815e3a]"
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-stone-400 hover:text-emerald-750"
               >
                 ✕
               </button>
@@ -156,32 +163,32 @@ export default function MenuSection({ onItemClick }) {
 
           {/* Enhanced tag filters */}
           {availableTags.length > 0 && (
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-2 lg:max-w-xl">
               <div className="flex items-center space-x-2">
-                <SlidersHorizontal className="w-4 h-4 text-[#815e3a]" />
-                <span className="text-sm text-[#815e3a] font-bold">Quick Filters:</span>
+                <SlidersHorizontal className="w-3.5 h-3.5 text-emerald-805" />
+                <span className="text-[11px] text-emerald-900 font-extrabold uppercase tracking-wider">Quick Filters:</span>
               </div>
               
-              <div className="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1">
+              <div className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar py-1">
                 <button
                   onClick={() => setActiveTagFilter('')}
-                  className={`text-xs px-4 py-2 rounded-xl border-2 font-bold flex-shrink-0 transition-all ${
+                  className={`text-[10px] px-3.5 py-1.5 rounded-xl border font-bold flex-shrink-0 tracking-wider uppercase transition-all cursor-pointer ${
                     activeTagFilter === ''
-                      ? 'bg-[#815e3a] text-white border-[#815e3a] shadow-md'
-                      : 'bg-white text-[#624326] border-[#eadecf] hover:bg-[#f6f2eb] hover:border-[#bca47a]'
+                      ? 'bg-emerald-950 text-[#4ade80] border-emerald-950 shadow-sm'
+                      : 'bg-white text-stone-600 border-[#dde3d5] hover:bg-emerald-50/30'
                   }`}
                 >
-                  All Items
+                  All
                 </button>
 
                 {availableTags.slice(0, 5).map((tag) => (
                   <button
                     key={tag}
                     onClick={() => setActiveTagFilter(tag)}
-                    className={`text-xs px-4 py-2 rounded-xl border-2 font-bold flex-shrink-0 transition-all ${
+                    className={`text-[10px] px-3.5 py-1.5 rounded-xl border font-bold flex-shrink-0 tracking-wider uppercase transition-all cursor-pointer ${
                       activeTagFilter === tag
-                        ? 'bg-[#815e3a] text-white border-[#815e3a] shadow-md'
-                        : 'bg-white text-[#624326] border-[#eadecf] hover:bg-[#f6f2eb] hover:border-[#bca47a]'
+                        ? 'bg-emerald-950 text-[#4ade80] border-emerald-950 shadow-sm'
+                        : 'bg-white text-stone-600 border-[#dde3d5] hover:bg-emerald-50/30'
                     }`}
                   >
                     {tag}
@@ -194,20 +201,20 @@ export default function MenuSection({ onItemClick }) {
         </div>
 
         {/* --- MAIN CATEGORY TABS --- */}
-        <div className="flex justify-center space-x-2 sm:space-x-4 overflow-x-auto no-scrollbar border-b border-[#eadecf] mb-16">
+        <div className="flex justify-center flex-wrap gap-2.5 sm:gap-3.5 mb-14">
           {menuCategories.map((cat) => {
             const Icon = Icons[cat.icon] || Icons.HelpCircle;
             return (
               <button
                 key={cat.id}
                 onClick={() => handleCategoryChange(cat.id)}
-                className={`flex items-center space-x-2 px-6 py-5 font-bold border-b-2 text-sm tracking-wide transition-all select-none flex-shrink-0 ${
+                className={`flex items-center space-x-2.5 px-5 py-3 rounded-2xl font-bold border transition-all text-xs tracking-wider uppercase select-none flex-shrink-0 cursor-pointer ${
                   selectedCategory === cat.id
-                    ? 'border-[#543722] text-[#2a180b] opacity-100 font-extrabold'
-                    : 'border-transparent text-[#9a764d] hover:text-[#2a180b] opacity-80'
+                    ? 'bg-[#0f2a17] border-[#0f2a17] text-[#4ade80] font-black shadow-md'
+                    : 'bg-white hover:bg-emerald-50/50 border-[#eadecf] text-stone-600 hover:text-[#0f2a17]'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-3.5 h-3.5" />
                 <span>{cat.name}</span>
               </button>
             );
@@ -221,7 +228,7 @@ export default function MenuSection({ onItemClick }) {
               <div
                 key={item.id}
                 onClick={() => onItemClick(item)}
-                className="bg-white rounded-3xl overflow-hidden border-2 border-[#eadecf] hover:border-[#bca47a] hover:shadow-2xl transition-all duration-300 group cursor-pointer flex flex-col h-full transform hover:-translate-y-2"
+                className="bg-white rounded-3xl overflow-hidden border border-[#eadecf] hover:border-emerald-700/40 hover:shadow-2xl transition-all duration-300 group cursor-pointer flex flex-col h-full transform hover:-translate-y-2.5"
               >
                 {/* Visual Header */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#f5f0eb] to-[#eadecf]">
@@ -233,12 +240,12 @@ export default function MenuSection({ onItemClick }) {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2a180b]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Floating price tag */}
-                  <div className="absolute top-4 right-4 bg-[#2a180b] text-[#faf8f5] px-4 py-2 rounded-2xl font-extrabold text-base shadow-xl backdrop-blur-sm">
+                  <div className="absolute top-4 right-4 bg-emerald-950 text-emerald-400 px-4 py-2 rounded-2xl font-extrabold text-base shadow-xl backdrop-blur-sm border border-emerald-800/10">
                     ₱{item.price}
                   </div>
 
                   {/* Category badge */}
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#815e3a] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-[#0f2a17] px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-emerald-800/10">
                     {menuCategories.find(cat => cat.id === item.category)?.name.split(' ')[0] || 'Special'}
                   </div>
                 </div>
@@ -247,31 +254,36 @@ export default function MenuSection({ onItemClick }) {
                 <div className="p-6 flex-grow flex flex-col justify-between">
                   <div className="space-y-3">
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 items-center">
                       {item.tags.slice(0, 2).map((tag) => (
                         <span
                           key={tag}
-                          className={`text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full font-sans ${
+                          className={`text-[9.5px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-md font-sans ${
                             tag === 'Best Seller'
-                              ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white'
+                              ? 'bg-amber-950/80 text-amber-300 border border-amber-800/15'
                               : tag === 'Vegan Friendly' || tag === 'Vegan' || tag === 'Vegetarian Option'
-                              ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white'
+                              ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800/15'
                               : tag === 'Trending'
-                              ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-                              : 'bg-[#543722]/15 text-[#543722]'
+                              ? 'bg-purple-950/80 text-purple-300 border border-purple-800/15'
+                              : 'bg-stone-100 text-stone-600'
                           }`}
                         >
                           {tag}
                         </span>
                       ))}
+                      {(item.category === 'coffee' || item.category === 'non-coffee') && (
+                        <span className="text-[9.5px] font-black text-emerald-700 bg-emerald-50 border border-emerald-100/60 px-2 py-1 rounded-md flex items-center gap-1 shadow-sm uppercase tracking-wider">
+                          🌱 Eco-Cup
+                        </span>
+                      )}
                       {item.tags.length > 2 && (
-                        <span className="text-[10px] text-[#9a764d] font-medium">
+                        <span className="text-[10px] text-[#9a764d] font-semibold">
                           +{item.tags.length - 2} more
                         </span>
                       )}
                     </div>
 
-                    <h3 className="text-xl font-serif font-black text-[#2a180b] group-hover:text-[#815e3a] transition-colors line-clamp-2 leading-tight">
+                    <h3 className="text-xl font-serif font-black text-[#2a180b] group-hover:text-emerald-800 transition-colors line-clamp-2 leading-tight">
                       {item.name}
                     </h3>
                     
@@ -282,11 +294,11 @@ export default function MenuSection({ onItemClick }) {
 
                   {/* Open Prompter */}
                   <div className="pt-5 border-t border-[#f5f0eb] mt-5 flex items-center justify-between">
-                    <div className="text-xs text-[#815e3a] font-bold">
-                      <span className="block">Nutrition & Origin</span>
-                      <span className="text-[#9a764d] font-medium">Tap for details</span>
+                    <div className="text-xs text-[#0f2a17] font-bold">
+                      <span className="block font-black">Nutrition &amp; Origin</span>
+                      <span className="text-stone-500 font-medium">Tap for details</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-[#815e3a] group-hover:translate-x-1 transition-transform duration-300">
+                    <div className="flex items-center space-x-2 text-[#0f2a17] group-hover:text-emerald-700 group-hover:translate-x-1 transition-all duration-300">
                       <span className="text-sm font-bold">Customize</span>
                       <Icons.ChevronRight className="w-4 h-4" />
                     </div>
