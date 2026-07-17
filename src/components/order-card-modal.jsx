@@ -89,6 +89,11 @@ export default function OrderCardModal({ isOpen, onClose, onDone, trayItems, cus
               <ClipboardCheck className="w-3.5 h-3.5 animate-bounce" /> Barista Check
             </div>
           </div>
+
+          {/* Friendly note to show barista */}
+          <div className="mt-3 text-center text-[10.5px] sm:text-xs font-bold text-[#8a532a] bg-amber-50 rounded-xl py-2.5 px-3.5 border border-amber-200/50 flex items-center justify-center gap-1.5 shadow-sm">
+            <span>✨ Please show this screen to our friendly barista at the counter! ✨</span>
+          </div>
         </div>
 
         {/* ── TICKET BODY (Items Checklist) ── */}
