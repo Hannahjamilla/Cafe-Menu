@@ -84,6 +84,15 @@ export default function App() {
     localStorage.setItem('showThankYouPopup', showThankYouPopup ? 'true' : 'false');
   }, [showThankYouPopup]);
 
+  // Snapshot of tray items for receipt display (captured before clearing)
+  const [receiptItems, setReceiptItems] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('receiptItems') || '[]'); }
+    catch { return []; }
+  });
+  React.useEffect(() => {
+    localStorage.setItem('receiptItems', JSON.stringify(receiptItems));
+  }, [receiptItems]);
+
   const handleAddToTray = (customizations, price) => {
     const newItem = {
       id: 'tray-item-' + Date.now() + Math.random().toString(36).substring(5),
@@ -1337,7 +1346,12 @@ export default function App() {
       <OrderCardModal
         isOpen={presentModeOpen}
         onClose={() => setPresentModeOpen(false)}
+        onBack={() => {
+          setPresentModeOpen(false);
+          setTrayOpen(true);
+        }}
         onDone={() => {
+          setReceiptItems([...trayItems]);
           handleClearTray();
           setPresentModeOpen(false);
           setShowThankYouPopup(true);
@@ -1346,14 +1360,16 @@ export default function App() {
         customerName={customerName}
       />
 
-      {/* ─── THANK YOU POPUP ─── */}
+      {/* ─── THANK YOU POPUP (RECEIPT STYLE) ─── */}
       <ThankYouModal
         isOpen={showThankYouPopup}
         onClose={() => {
           setShowThankYouPopup(false);
           setCustomerName('');
+          setReceiptItems([]);
         }}
         customerName={customerName}
+        orderItems={receiptItems}
       />
 
       {/* ─── ADD-TO-TRAY TOAST ─── */}
