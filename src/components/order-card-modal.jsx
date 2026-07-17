@@ -56,15 +56,20 @@ export default function OrderCardModal({ isOpen, onClose, onDone, trayItems, cus
         </div>
 
         {/* ── TICKET HEADER ── */}
-        <div className="bg-white px-6 pb-4 pt-2 border-b border-stone-150 shrink-0 relative">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
-                <Coffee className="w-4.5 h-4.5 text-amber-800 animate-pulse" />
+        <div className="bg-white px-6 pb-4 pt-4 border-b border-stone-200 shrink-0 relative">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-200/60 flex items-center justify-center shrink-0 shadow-sm">
+                <Coffee className="w-6 h-6 text-amber-900" />
               </div>
               <div>
-                <span className="block text-[8px] font-black uppercase tracking-[0.25em] text-[#a26a42]">Brows&Beyond</span>
-                <span className="block text-xs font-bold text-stone-400">Order Checklist</span>
+                <h1 className="text-lg sm:text-xl font-serif font-black uppercase tracking-wide text-stone-900 leading-none">
+                  Brows & Beyond
+                </h1>
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#a26a42] mt-1 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  Order Checklist
+                </p>
               </div>
             </div>
             
@@ -78,20 +83,15 @@ export default function OrderCardModal({ isOpen, onClose, onDone, trayItems, cus
           </div>
 
           {/* Large prominent customer label for Barista */}
-          <div className="mt-4 bg-[#fbf5eb] border-2 border-[#e8dcb9] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-inner">
-            <div>
-              <span className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#8a532a]">Customer Name:</span>
-              <h2 className="text-2xl sm:text-3.5xl font-serif font-black text-stone-900 leading-none mt-1 break-words">
-                {customerName.trim() || 'My Order'}
-              </h2>
-            </div>
-            <div className="shrink-0 bg-amber-500 text-stone-950 font-black text-[9px] uppercase tracking-wider px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm w-fit">
-              <ClipboardCheck className="w-3.5 h-3.5 animate-bounce" /> Barista Check
-            </div>
+          <div className="mt-4 bg-[#fbf5eb] border-2 border-[#e8dcb9] rounded-2xl p-4 shadow-inner">
+            <span className="block text-[9px] font-black uppercase tracking-[0.2em] text-[#8a532a]">Customer Name:</span>
+            <h2 className="text-2xl sm:text-3.5xl font-serif font-black text-stone-900 leading-none mt-1 break-words">
+              {customerName.trim() || 'My Order'}
+            </h2>
           </div>
 
           {/* Friendly note to show barista */}
-          <div className="mt-3 text-center text-[10.5px] sm:text-xs font-bold text-[#8a532a] bg-amber-50 rounded-xl py-2.5 px-3.5 border border-amber-200/50 flex items-center justify-center gap-1.5 shadow-sm">
+          <div className="mt-3 text-center text-[10.5px] sm:text-xs font-extrabold text-white bg-emerald-650 bg-emerald-600 rounded-xl py-2.5 px-3.5 border border-emerald-700 flex items-center justify-center gap-1.5 shadow-md animate-pulse">
             <span>✨ Please show this screen to our friendly barista at the counter! ✨</span>
           </div>
         </div>
@@ -106,57 +106,50 @@ export default function OrderCardModal({ isOpen, onClose, onDone, trayItems, cus
             const optsArray = Object.values(item.customizations || {}).filter(v => v && v.trim() !== '');
 
             return (
-              <div key={item.id} className="relative bg-white border border-stone-200/70 p-4 rounded-2xl flex gap-4 items-start shadow-sm hover:shadow-md transition-shadow">
+              <div key={item.id} className="relative bg-white border border-stone-200/80 p-3.5 rounded-[22px] flex gap-3.5 items-center shadow-sm hover:shadow-md transition-shadow">
                 
-                {/* Visual order card number / checkbox mock */}
-                <div className="flex flex-col items-center gap-1.5 shrink-0 mt-0.5">
-                  <div className="w-9 h-9 rounded-xl bg-amber-100 border border-amber-200 text-amber-900 font-extrabold text-[12px] flex items-center justify-center">
-                    {idx + 1}
+                {/* Barista checklist circle checkbox mock & index */}
+                <div className="shrink-0 flex items-center gap-3">
+                  {/* Mimic checklist box for barista checkoff */}
+                  <div className="w-5.5 h-5.5 rounded-md border-2 border-stone-200 bg-stone-50/50 flex items-center justify-center shrink-0">
+                    <span className="text-stone-300 text-[10px] font-bold select-none">✓</span>
+                  </div>
+                  
+                  {/* Huge bold Qty block */}
+                  <div className="w-13 h-13 rounded-xl bg-[#3b1f0a] text-white flex flex-col items-center justify-center shrink-0 shadow-inner">
+                    <span className="text-[7.5px] font-black text-amber-400/90 uppercase tracking-widest leading-none">QTY</span>
+                    <span className="text-xl font-black leading-none mt-1">{item.quantity}</span>
                   </div>
                 </div>
 
                 {/* Main Item details */}
                 <div className="flex-grow min-w-0">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      {/* Big clear name for barista */}
-                      <p className="font-serif font-black text-stone-900 text-base leading-snug">
-                        {item.name}
-                      </p>
-                      
-                      {/* Big bold quantity for barista */}
-                      <div className="mt-1 inline-flex items-center gap-1 bg-stone-100 text-stone-800 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md border border-stone-250">
-                        Qty: <span className="text-xs text-amber-700 font-black">{item.quantity}</span>
-                      </div>
-                    </div>
-
-                    <div className="text-right shrink-0">
-                      <span className="font-serif font-black text-stone-600 text-sm">
-                        ₱{(item.price * item.quantity).toFixed(0)}
-                      </span>
-                    </div>
-                  </div>
+                  <h3 className="font-serif font-black text-[#3d200b] text-[15.5px] leading-snug">
+                    {item.name}
+                  </h3>
 
                   {/* Explicit Customization Badges */}
                   {optsArray.length > 0 ? (
-                    <div className="mt-3 bg-[#faf8f5] p-2.5 rounded-xl border border-stone-150">
-                      <span className="block text-[7.5px] font-black uppercase tracking-wider text-[#a26a42] mb-1.5">
-                        Barista Customizations:
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {optsArray.map((opt, i) => (
-                          <span key={i} className="inline-flex items-center gap-1 bg-white border border-[#e8dcb9] text-[#8a532a] text-[9.5px] font-extrabold uppercase px-2.5 py-1 rounded-lg shadow-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                            {opt}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="mt-1 flex flex-wrap gap-1">
+                      {optsArray.map((opt, i) => (
+                        <span key={i} className="inline-flex items-center gap-1 bg-[#fdfaf5] border border-[#e8dcb9] text-[#8a532a] text-[9px] font-black uppercase px-2 py-0.5 rounded-lg shadow-sm">
+                          <span className="w-1 h-1 rounded-full bg-amber-500 shrink-0" />
+                          {opt}
+                        </span>
+                      ))}
                     </div>
                   ) : (
-                    <div className="mt-2 text-[9px] font-bold text-stone-400 italic">
-                      Standard Recipe (No Customizations)
-                    </div>
+                    <p className="text-[9px] font-bold text-stone-400 italic mt-0.5">
+                      Standard Recipe (No Changes)
+                    </p>
                   )}
+                </div>
+
+                {/* Price block - muted for barista */}
+                <div className="text-right shrink-0 pl-1">
+                  <span className="font-serif font-bold text-stone-400 text-sm">
+                    ₱{(item.price * item.quantity).toFixed(0)}
+                  </span>
                 </div>
 
               </div>
